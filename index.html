@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
+
+<!-- 토스트 알림 -->
+<div id="toast" class="toast"></div>
+
 <!-- START -->
 <div id="startScreen" class="overlay show">
   <div class="sbox">
@@ -28,6 +32,28 @@
   </div>
 </div>
 
+<!-- COOK MODAL (요리 미니게임) -->
+<div id="cookModal" class="overlay">
+  <div class="cook-modal">
+    <div class="cook-modal-title" id="cookModalTitle">🍳 요리 중</div>
+    <div class="cook-modal-phase" id="cookModalPhase">단계 1 / 2</div>
+    <div class="cook-modal-desc" id="cookModalDesc">재료를 다듬는다...</div>
+
+    <div class="cook-bar-wrap">
+      <div class="cook-bar" id="cookBar">
+        <div class="cook-zone" id="cookZone"></div>
+        <div class="cook-marker" id="cookMarker"></div>
+      </div>
+      <div class="cook-bar-label">
+        <span style="color:#8b949e;font-size:11px">← 마커가 초록 구간에 있을 때 클릭!</span>
+      </div>
+    </div>
+
+    <button class="cook-click-btn" id="cookClickBtn" onclick="cookClick()">🔥 지금!</button>
+    <div class="cook-tip">마커가 초록 구간에 들어올 때 클릭하세요</div>
+  </div>
+</div>
+
 <!-- END -->
 <div id="endScreen" class="overlay">
   <div class="ebox">
@@ -44,7 +70,7 @@
     <div class="top-title">🏝 무인도 생존기</div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       <span class="badge" id="topDay" style="color:#58a6ff">1일차</span>
-      <span class="badge" id="topTime" style="color:#e3b341">낮</span>
+      <span class="badge" id="topTime" style="color:#e3b341">🌅 아침 00:00</span>
       <span class="badge" id="diffBadge" style="color:#8b949e;font-size:11px"></span>
     </div>
     <button class="rst-btn" onclick="showStartScreen()">↩ 처음으로</button>
@@ -86,6 +112,13 @@
         <div class="act-grid" id="actGrid"></div>
         <button class="nd-btn" id="ndBtn">⏩ 다음 날로 넘기기</button>
       </div>
+
+      <!-- 요리 패널 -->
+      <div class="panel">
+        <div class="ptitle">🍳 요리대 <span class="ptitle-sub">식재료 조리 → 높은 포만감·회복</span></div>
+        <div class="cook-grid" id="cookGrid"></div>
+      </div>
+
       <div class="panel">
         <div class="ptitle">제작대</div>
         <div class="craft-grid" id="craftGrid"></div>
@@ -98,9 +131,13 @@
         <div class="ptitle">생존 현황</div>
         <div class="day-row">
           <div class="day-n" id="rightDay">1일차</div>
-          <div class="time-b tday" id="rightTime">낮</div>
+          <div class="time-b tday" id="rightTime">🌅 아침</div>
         </div>
-        <div class="pips-row"><span>시간</span><div class="pips" id="pipRow"></div><span id="actRem" style="color:#e6edf3;font-weight:700"></span></div>
+        <div class="pips-row">
+          <span>시간</span>
+          <div id="pipRow"></div>
+          <span id="actRem" style="color:#e6edf3;font-weight:700;font-size:11px"></span>
+        </div>
         <div class="resc-lbl"><span>🆘 구조 신호 진행도</span><b id="rescPct">0%</b></div>
         <div class="resc-bar"><div class="resc-fill" id="rescFill" style="width:0%"></div></div>
       </div>
