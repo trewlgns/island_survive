@@ -32,25 +32,15 @@
   </div>
 </div>
 
-<!-- COOK MODAL (요리 미니게임) -->
+<!-- COOK MODAL -->
 <div id="cookModal" class="overlay">
   <div class="cook-modal">
-    <div class="cook-modal-title" id="cookModalTitle">🍳 요리 중</div>
-    <div class="cook-modal-phase" id="cookModalPhase">단계 1 / 2</div>
-    <div class="cook-modal-desc" id="cookModalDesc">재료를 다듬는다...</div>
-
-    <div class="cook-bar-wrap">
-      <div class="cook-bar" id="cookBar">
-        <div class="cook-zone" id="cookZone"></div>
-        <div class="cook-marker" id="cookMarker"></div>
-      </div>
-      <div class="cook-bar-label">
-        <span style="color:#8b949e;font-size:11px">← 마커가 초록 구간에 있을 때 클릭!</span>
-      </div>
+    <div class="cook-modal-header">
+      <div class="cook-modal-title" id="cookModalTitle">🍳 요리대</div>
+      <button class="cook-modal-back" id="cookModalBack" onclick="cookGoBack()" style="display:none">← 뒤로</button>
+      <button class="cook-modal-close" id="cookModalClose" onclick="closeCookModal()">✕ 닫기</button>
     </div>
-
-    <button class="cook-click-btn" id="cookClickBtn" onclick="cookClick()">🔥 지금!</button>
-    <div class="cook-tip">마커가 초록 구간에 들어올 때 클릭하세요</div>
+    <div id="cookModalBody"></div>
   </div>
 </div>
 
@@ -109,19 +99,29 @@
           <div class="loc-info"><h2 id="locNm">해변</h2><p id="locDesc"></p></div>
         </div>
         <div class="act-status" id="actStatus"></div>
-        <div class="act-grid" id="actGrid"></div>
-        <button class="nd-btn" id="ndBtn">⏩ 다음 날로 넘기기</button>
-      </div>
 
-      <!-- 요리 패널 -->
-      <div class="panel">
-        <div class="ptitle">🍳 요리대 <span class="ptitle-sub">식재료 조리 → 높은 포만감·회복</span></div>
-        <div class="cook-grid" id="cookGrid"></div>
-      </div>
+        <!-- 은신처 서브탭 (은신처에서만 표시) -->
+        <div id="shelterTabBar" style="display:none">
+          <div class="shelter-tabs">
+            <button class="stab stab-cur" data-tab="act" onclick="switchShelterTab('act')">⚡ 행동</button>
+            <button class="stab" data-tab="craft" onclick="switchShelterTab('craft')">⚒ 제작대</button>
+            <button class="stab" data-tab="cook" onclick="switchShelterTab('cook')">🍳 요리대</button>
+          </div>
+        </div>
 
-      <div class="panel">
-        <div class="ptitle">제작대</div>
-        <div class="craft-grid" id="craftGrid"></div>
+        <!-- 행동 패널 -->
+        <div id="actPanel">
+          <div class="act-grid" id="actGrid"></div>
+          <button class="nd-btn" id="ndBtn">⏩ 다음 날로 넘기기</button>
+        </div>
+
+        <!-- 제작 패널 (은신처에서만) -->
+        <div id="craftPanel" style="display:none">
+          <div class="craft-grid" id="craftGrid"></div>
+        </div>
+
+        <!-- 요리 패널 (은신처에서만) -->
+        <div id="cookPanel" style="display:none"></div>
       </div>
     </div>
 
@@ -131,7 +131,7 @@
         <div class="ptitle">생존 현황</div>
         <div class="day-row">
           <div class="day-n" id="rightDay">1일차</div>
-          <div class="time-b tday" id="rightTime">🌅 아침</div>
+          <div class="time-b t-morning" id="rightTime">🌅 아침</div>
         </div>
         <div class="pips-row">
           <span>시간</span>

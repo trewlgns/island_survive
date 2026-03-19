@@ -4,22 +4,16 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .overlay.show{display:flex}
 @keyframes popIn{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
-@keyframes slideDown{from{transform:translateY(-20px) translateX(-50%);opacity:0}to{transform:translateY(0) translateX(-50%);opacity:1}}
-@keyframes fadeOut{from{opacity:1}to{opacity:0}}
+@keyframes slideDown{from{transform:translateY(-16px) translateX(-50%);opacity:0}to{transform:translateY(0) translateX(-50%);opacity:1}}
 
-/* ─── TOAST ─────────────────────────────────────── */
-.toast{
-  position:fixed;top:60px;left:50%;transform:translateX(-50%);
-  padding:10px 20px;border-radius:10px;font-size:13px;font-weight:600;
-  z-index:999;pointer-events:none;opacity:0;transition:opacity .3s;
-  white-space:nowrap;border:1px solid transparent;
-}
-.toast.show{opacity:1;animation:slideDown .3s ease}
+/* ─── TOAST ──────────────────────────────────────────── */
+.toast{position:fixed;top:58px;left:50%;transform:translateX(-50%);padding:9px 20px;border-radius:10px;font-size:13px;font-weight:600;z-index:999;pointer-events:none;opacity:0;transition:opacity .3s;white-space:nowrap;border:1px solid transparent}
+.toast.show{opacity:1;animation:slideDown .25s ease}
 .toast-info{background:#21262d;border-color:#30363d;color:#e6edf3}
-.toast-good{background:#1a3a2050;border-color:#3fb950;color:#7ee787}
-.toast-bad{background:#3a1a1a50;border-color:#f85149;color:#ff7b72}
+.toast-good{background:#1a3a2060;border-color:#3fb950;color:#7ee787}
+.toast-bad{background:#3a1a1a60;border-color:#f85149;color:#ff7b72}
 
-/* ─── START ─────────────────────────────────────── */
+/* ─── START ──────────────────────────────────────────── */
 .sbox{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:40px 32px;text-align:center;max-width:480px;width:90%;animation:popIn .35s ease}
 .sbox h1{font-size:28px;font-weight:800;color:#58a6ff;letter-spacing:2px;margin-bottom:6px}
 .sbox p{color:#8b949e;font-size:13px;line-height:1.7;margin-bottom:24px}
@@ -33,7 +27,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .start-btn{background:#58a6ff;color:#0d1117;border:none;padding:12px;border-radius:8px;font-size:15px;font-weight:700;cursor:pointer;width:100%;letter-spacing:1px}
 .start-btn:hover{background:#79c0ff}
 
-/* ─── DAY MODAL ─────────────────────────────────── */
+/* ─── DAY MODAL ──────────────────────────────────────── */
 .dmo{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:28px;text-align:center;max-width:400px;width:90%;animation:popIn .35s ease}
 .dmo-title{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#8b949e;margin-bottom:4px}
 .dmo-day{font-size:34px;font-weight:800;color:#58a6ff;margin-bottom:14px}
@@ -48,26 +42,77 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .dmo-btn:hover{background:#79c0ff}
 .dmo-timer{font-size:11px;color:#8b949e55;margin-top:6px}
 
-/* ─── COOK MODAL ────────────────────────────────── */
-.cook-modal{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:30px 28px;text-align:center;max-width:400px;width:90%;animation:popIn .35s ease}
-.cook-modal-title{font-size:18px;font-weight:800;color:#e3b341;margin-bottom:6px}
-.cook-modal-phase{font-size:12px;color:#8b949e;margin-bottom:4px}
-.cook-modal-desc{font-size:13px;color:#e6edf3;margin-bottom:20px;min-height:20px}
-.cook-bar-wrap{margin-bottom:20px}
-.cook-bar{position:relative;width:100%;height:28px;background:#21262d;border-radius:14px;overflow:hidden;border:1px solid #30363d}
-.cook-zone{position:absolute;top:0;height:100%;background:#3fb95044;border-left:2px solid #3fb950;border-right:2px solid #3fb950;border-radius:0;transition:left .05s}
-.cook-marker{position:absolute;top:2px;width:6px;height:24px;background:#e3b341;border-radius:3px;transform:translateX(-50%);box-shadow:0 0 8px #e3b34188;transition:left .01s}
-.cook-bar-label{margin-top:6px;text-align:center}
-.cook-click-btn{background:#e3b341;color:#0d1117;border:none;padding:12px 40px;border-radius:10px;font-size:16px;font-weight:800;cursor:pointer;transition:all .15s;letter-spacing:1px}
-.cook-click-btn:hover{background:#f0c060;transform:scale(1.05)}
-.cook-click-btn:active{transform:scale(0.96)}
-.cook-tip{font-size:11px;color:#8b949e55;margin-top:10px}
-.cook-perfect{color:#3fb950;font-weight:800;font-size:15px}
-.cook-good{color:#7ee787;font-weight:700}
-.cook-poor{color:#f0a050;font-weight:600}
-.cook-fail{color:#ff7b72;font-weight:600}
+/* ─── COOK MODAL ─────────────────────────────────────── */
+.cook-modal{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:24px 22px;max-width:460px;width:94%;max-height:88vh;overflow-y:auto;animation:popIn .3s ease}
+.cook-modal::-webkit-scrollbar{width:3px}
+.cook-modal::-webkit-scrollbar-thumb{background:#30363d;border-radius:2px}
+.cook-modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.cook-modal-title{font-size:16px;font-weight:800;color:#e3b341}
+.cook-modal-back{background:transparent;border:1px solid #30363d;border-radius:6px;color:#8b949e;font-size:11px;padding:4px 10px;cursor:pointer;transition:all .2s}
+.cook-modal-back:hover{color:#e6edf3;border-color:#58a6ff44}
+.cook-modal-close{background:transparent;border:1px solid #f8514930;border-radius:6px;color:#8b949e;font-size:11px;padding:4px 10px;cursor:pointer;transition:all .2s}
+.cook-modal-close:hover{color:#ff7b72;border-color:#f85149}
 
-/* ─── END ───────────────────────────────────────── */
+/* Phase labels */
+.cook-phase-label{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8b949e;margin-bottom:6px}
+
+/* Ingredient grid */
+.cook-ingr-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:10px}
+.ingr-btn{background:#21262d;border:1px solid #30363d;border-radius:8px;padding:7px 4px;cursor:pointer;text-align:center;color:#e6edf3;transition:all .2s;position:relative}
+.ingr-btn:hover{border-color:#e3b34155;background:#e3b34108}
+.ingr-btn.selected{border-color:#e3b341;background:#e3b34118}
+.ingr-btn .ib-icon{font-size:18px;display:block;margin-bottom:2px}
+.ingr-btn .ib-name{font-size:10px;display:block;color:#8b949e}
+.ingr-btn .ib-qty{font-size:9px;color:#8b949e55;display:block}
+.ingr-selected-count{position:absolute;top:2px;right:4px;font-size:11px;font-weight:700;color:#e3b341}
+
+/* Selected wrap */
+.cook-sel-wrap{background:#21262d;border-radius:8px;padding:8px 10px;margin-bottom:10px;min-height:38px;display:flex;flex-wrap:wrap;gap:4px;align-items:center}
+.cook-sel-item{display:inline-flex;align-items:center;gap:3px;background:#161b22;border:1px solid #e3b34130;border-radius:5px;padding:3px 6px;font-size:12px}
+.qty-btn{background:none;border:none;color:#8b949e;cursor:pointer;font-size:14px;padding:0 2px;line-height:1;transition:color .15s}
+.qty-btn:hover:not(:disabled){color:#e3b341}
+.qty-btn:disabled{opacity:.3;cursor:not-allowed}
+
+/* Recipe memo */
+.cook-memo{background:#16180a;border:1px solid #e3b34120;border-radius:8px;padding:10px 12px;margin-bottom:12px}
+.cook-memo-title{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#e3b34166;margin-bottom:6px}
+.cook-memo-entry{font-size:11px;color:#8b949e;line-height:1.9}
+.cook-memo-entry b{color:#e6edf3}
+.cook-memo-empty{font-size:11px;color:#8b949e44;font-style:italic}
+
+/* Method grid */
+.cook-sel-recap{background:#21262d;border-radius:8px;padding:8px 12px;font-size:12px;color:#e6edf3;margin-bottom:12px}
+.cook-method-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:12px}
+.method-btn{background:#21262d;border:1px solid #30363d;border-radius:8px;padding:12px 8px;cursor:pointer;text-align:center;color:#8b949e;transition:all .2s}
+.method-btn:hover{background:#2d333b;border-color:#e3b34155;color:#e6edf3}
+.method-btn.selected{border-color:#e3b341;background:#e3b34115;color:#f0c060;font-weight:700}
+.method-btn .mb-icon{font-size:22px;display:block;margin-bottom:4px}
+.method-btn .mb-time{font-size:10px;color:#8b949e;display:block;margin-top:3px}
+.method-btn.selected .mb-time{color:#e3b34188}
+.cook-time-warn{font-size:11px;color:#ff7b72;background:#3a1a1a20;border:1px solid #f8514930;border-radius:6px;padding:6px 10px;margin-bottom:10px}
+
+/* Confirm button */
+.cook-confirm-btn{width:100%;background:#e3b341;color:#0d1117;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:800;cursor:pointer;transition:all .15s;letter-spacing:.5px;margin-top:4px}
+.cook-confirm-btn:hover:not(:disabled){background:#f0c060;transform:translateY(-1px)}
+.cook-confirm-btn:disabled{background:#21262d;color:#8b949e44;cursor:not-allowed;transform:none}
+
+/* Result */
+.cook-result-box{text-align:center;padding:16px 8px 20px}
+.cook-result-icon{font-size:52px;display:block;margin-bottom:8px}
+.cook-result-name{font-size:20px;font-weight:800;margin-bottom:6px;color:#e6edf3}
+.cook-result-new-badge{display:inline-block;background:#bc8cff18;border:1px solid #bc8cff55;border-radius:8px;padding:2px 10px;font-size:11px;color:#d2a8ff;margin-bottom:10px}
+.cook-result-stats{font-size:15px;color:#7ee787;font-weight:700;margin-bottom:4px}
+.cook-result-fail{color:#ff7b72}
+.cook-result-fail-sub{font-size:12px;color:#8b949e;margin-top:6px}
+
+/* Cook panel (inline in shelter) */
+.cook-campfire-notice{background:#1a150a;border:1px solid #e3b34128;border-radius:8px;padding:14px;text-align:center;color:#8b949e;font-size:13px;line-height:1.7}
+.cook-start-wrap{text-align:center;padding:8px 0}
+.cook-start-desc{font-size:12px;color:#8b949e;margin-bottom:10px}
+.cook-open-btn{background:#e3b341;color:#0d1117;border:none;border-radius:8px;padding:10px 28px;font-size:14px;font-weight:800;cursor:pointer;transition:all .2s;letter-spacing:.5px}
+.cook-open-btn:hover{background:#f0c060;transform:translateY(-1px)}
+
+/* ─── END ────────────────────────────────────────────── */
 .ebox{background:#161b22;border:1px solid #30363d;border-radius:16px;padding:32px;text-align:center;max-width:380px;width:90%;animation:popIn .35s ease}
 .ebox .eh{font-size:26px;font-weight:800;margin-bottom:8px}
 .ebox .em{color:#8b949e;font-size:13px;margin-bottom:14px;line-height:1.6}
@@ -76,24 +121,23 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .ebox .eb{background:#58a6ff;color:#0d1117;border:none;padding:11px 32px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer}
 .ebox .eb:hover{background:#79c0ff}
 
-/* ─── TOPBAR ────────────────────────────────────── */
+/* ─── TOPBAR ─────────────────────────────────────────── */
 .top-bar{display:flex;justify-content:space-between;align-items:center;background:#161b22;border:1px solid #30363d;border-radius:10px;padding:10px 16px;margin-bottom:10px;flex-wrap:wrap;gap:8px}
 .top-title{font-size:17px;font-weight:800;color:#58a6ff;letter-spacing:2px}
 .badge{font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;background:#21262d}
 .rst-btn{padding:5px 14px;border:1px solid #f8514944;border-radius:6px;background:transparent;color:#ff7b72;font-size:12px;cursor:pointer;font-weight:600}
 .rst-btn:hover{background:#f8514918}
 
-/* ─── GRID ──────────────────────────────────────── */
+/* ─── GRID ───────────────────────────────────────────── */
 .game-grid{display:grid;grid-template-columns:220px 1fr 300px;gap:10px;align-items:start}
 @media(max-width:960px){.game-grid{grid-template-columns:1fr}}
 
-/* ─── PANELS ────────────────────────────────────── */
+/* ─── PANELS ─────────────────────────────────────────── */
 .panel{background:#161b22;border:1px solid #30363d;border-radius:10px;padding:13px;margin-bottom:10px}
 .panel:last-child{margin-bottom:0}
-.ptitle{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8b949e;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #21262d;display:flex;align-items:center;gap:6px}
-.ptitle-sub{font-size:10px;font-weight:400;color:#58a6ff66;letter-spacing:0;text-transform:none}
+.ptitle{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#8b949e;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid #21262d}
 
-/* ─── CHARACTER ─────────────────────────────────── */
+/* ─── CHARACTER ──────────────────────────────────────── */
 .char-center{text-align:center;padding:4px 0}
 .char-svg{display:flex;justify-content:center;margin-bottom:6px}
 .char-st{display:inline-block;font-size:11px;font-weight:700;padding:3px 12px;border-radius:12px;margin-bottom:6px;letter-spacing:.5px}
@@ -114,7 +158,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .sick-warn{color:#ff7b72;font-size:10px;margin-left:2px}
 .sick-row{background:#3a1a1a30;border:1px solid #f8514940;border-radius:6px;padding:5px 8px;font-size:11px;color:#ff7b72;margin-bottom:8px}
 
-/* ─── STATS ─────────────────────────────────────── */
+/* ─── STATS ──────────────────────────────────────────── */
 .stat{margin-bottom:9px}.stat:last-child{margin-bottom:0}
 .stat-row{display:flex;justify-content:space-between;margin-bottom:3px;font-size:12px}
 .sl{color:#8b949e}.sv{color:#e6edf3;font-weight:700}
@@ -122,7 +166,7 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .bar-fill{height:100%;border-radius:4px;transition:width .4s,background .4s}
 .stat.low .bar-fill{background:#f85149!important}.stat.low .sv{color:#ff7b72}
 
-/* ─── INV ───────────────────────────────────────── */
+/* ─── INV ────────────────────────────────────────────── */
 .inv-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
 .inv-slot{background:#21262d;border:1px solid #30363d;border-radius:6px;padding:5px 3px;text-align:center}
 .inv-slot .si{font-size:15px;display:block;margin-bottom:2px}
@@ -131,9 +175,9 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .inv-slot.filled{border-color:#58a6ff30;background:#58a6ff08}
 .inv-slot.food-slot.filled{border-color:#e3b34140;background:#e3b34108}
 
-/* ─── LOCATION ──────────────────────────────────── */
+/* ─── LOCATION ───────────────────────────────────────── */
 .loc-tabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px}
-.tab{background:#21262d;border:1px solid #30363d;border-radius:7px;padding:5px 7px;cursor:pointer;transition:all .2s;text-align:center;color:#8b949e;min-width:64px}
+.tab{background:#21262d;border:1px solid #30363d;border-radius:7px;padding:5px 7px;cursor:pointer;transition:all .2s;text-align:center;color:#8b949e;min-width:62px}
 .tab.cur{background:#3fb95012;border-color:#3fb95055;color:#7ee787}
 .tab:hover:not(.cur):not([disabled]){border-color:#58a6ff44;color:#58a6ff;background:#58a6ff08}
 .tab[disabled]{opacity:.4;cursor:not-allowed}
@@ -141,12 +185,25 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .tab .tn{font-size:11px;display:block;font-weight:600}
 .tab .tc{font-size:9px;color:#e3b341;display:block;margin-top:1px}
 .tab .tcur{font-size:9px;color:#7ee787;display:block;margin-top:1px}
+.tab.unbuilt{opacity:.55;border-style:dashed}
 .loc-hdr{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .loc-ico{font-size:30px;flex-shrink:0}
 .loc-info h2{font-size:15px;font-weight:600}
 .loc-info p{font-size:12px;color:#8b949e;margin-top:2px;line-height:1.4}
 
-/* ─── ACTIONS ───────────────────────────────────── */
+/* ─── SHELTER TABS ───────────────────────────────────── */
+.shelter-tabs{display:flex;gap:5px;margin-bottom:10px;border-bottom:1px solid #21262d;padding-bottom:8px}
+.stab{background:transparent;border:1px solid #30363d;border-radius:7px 7px 0 0;padding:6px 14px;cursor:pointer;color:#8b949e;font-size:12px;font-weight:600;transition:all .2s}
+.stab:hover:not(.stab-cur){background:#21262d;color:#e6edf3}
+.stab.stab-cur{background:#21262d;border-color:#e3b34155;color:#f0c060}
+.stab[data-tab="craft"].stab-cur{border-color:#58a6ff55;color:#79c0ff}
+.stab[data-tab="cook"].stab-cur{border-color:#e3b341;color:#e3b341}
+.shelter-notice{grid-column:1/-1;background:#1a150a;border:1px dashed #e3b34130;border-radius:8px;padding:14px;text-align:center;color:#8b949e;font-size:12px;line-height:1.8}
+.shelter-notice b{color:#e3b341}
+.craft-locked{opacity:.35!important;cursor:not-allowed!important}
+.craft-locked .cr{color:#58a6ff88!important}
+
+/* ─── ACTIONS ────────────────────────────────────────── */
 .act-status{font-size:12px;color:#8b949e;margin-bottom:8px}
 .act-status b{color:#e6edf3}
 .ts-clock{font-size:11px;color:#8b949e;font-variant-numeric:tabular-nums}
@@ -163,47 +220,34 @@ body{font-family:'Segoe UI',system-ui,sans-serif;background:#0d1117;color:#e6edf
 .nd-btn:hover:not(:disabled){background:#58a6ff12;border-color:#58a6ff66}
 .nd-btn:disabled{opacity:.38;cursor:not-allowed}
 
-/* ─── COOK GRID ─────────────────────────────────── */
-.cook-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
-.cook-btn{background:#21262d;border:1px solid #30363d;border-radius:8px;padding:9px 8px;cursor:pointer;transition:all .2s;text-align:left;color:#e6edf3}
-.cook-btn:hover:not(:disabled){background:#2d333b;border-color:#e3b34166;transform:translateY(-1px)}
-.cook-btn:disabled{opacity:.38;cursor:not-allowed}
-.cook-btn.avail{border-color:#e3b34133;background:#e3b34106}
-.cook-btn .cico{font-size:18px;display:block;margin-bottom:3px}
-.cook-btn .cn{font-size:12px;font-weight:700;display:block;margin-bottom:2px}
-.cook-btn .cook-diff{font-size:10px;color:#e3b341;display:block;margin-bottom:2px}
-.cook-btn .cr{font-size:10px;color:#8b949e;display:block}
-.cook-btn .ag{font-size:11px;color:#7ee787;display:block;margin-top:3px;font-weight:600}
-
-/* ─── CRAFT ─────────────────────────────────────── */
+/* ─── CRAFT ──────────────────────────────────────────── */
 .craft-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
 .craft-btn{background:#21262d;border:1px solid #30363d;border-radius:8px;padding:9px 8px;cursor:pointer;transition:all .2s;text-align:left;color:#e6edf3}
-.craft-btn:hover:not(:disabled){background:#2d333b;border-color:#e3b34166;transform:translateY(-1px)}
+.craft-btn:hover:not(:disabled){background:#2d333b;border-color:#58a6ff66;transform:translateY(-1px)}
 .craft-btn:disabled{opacity:.38;cursor:not-allowed}
-.craft-btn.avail{border-color:#e3b34144;background:#e3b34108}
+.craft-btn.avail{border-color:#58a6ff33;background:#58a6ff06}
 .craft-btn .cico{font-size:16px;display:block;margin-bottom:3px}
 .craft-btn .cn{font-size:12px;font-weight:700;display:block;margin-bottom:2px}
 .craft-btn .cr{font-size:11px;color:#8b949e;display:block}
 .craft-btn .cres{font-size:11px;color:#7ee787;display:block;margin-top:2px}
 
-/* ─── RIGHT ─────────────────────────────────────── */
+/* ─── RIGHT ──────────────────────────────────────────── */
 .day-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
 .day-n{font-size:22px;font-weight:800;color:#58a6ff}
 .time-b{font-size:12px;padding:3px 10px;border-radius:12px;font-weight:600;background:#21262d}
 .t-morning{color:#e3b341}.t-noon{color:#f0a050}.t-evening{color:#bc8cff}.t-night{color:#58a6ff}
-.tday{color:#e3b341}.tnight{color:#bc8cff}
 
-/* ─── 48칸 시간 바 ──────────────────────────────── */
+/* 48칸 시간 바 */
 .pips-row{display:flex;align-items:center;gap:6px;margin-bottom:10px;font-size:12px;color:#8b949e}
-.pip2-row{display:flex;gap:2px;flex-wrap:wrap;align-items:center}
-.pip2{width:5px;height:14px;border-radius:2px;border:1px solid transparent;transition:background .3s}
+.pip2-row{display:flex;gap:2px;flex-wrap:wrap}
+.pip2{width:5px;height:14px;border-radius:2px;border:1px solid transparent;transition:background .25s}
 
 .resc-lbl{font-size:12px;color:#8b949e;display:flex;justify-content:space-between;margin-bottom:4px}
 .resc-lbl b{color:#e6edf3}
 .resc-bar{height:10px;background:#21262d;border-radius:5px;overflow:hidden}
 .resc-fill{height:100%;background:linear-gradient(90deg,#58a6ff,#bc8cff);transition:width .5s;border-radius:5px}
 
-/* ─── LOG ───────────────────────────────────────── */
+/* ─── LOG ────────────────────────────────────────────── */
 .log-wrap{max-height:380px;overflow-y:auto;display:flex;flex-direction:column;gap:3px}
 .log-wrap::-webkit-scrollbar{width:3px}
 .log-wrap::-webkit-scrollbar-thumb{background:#30363d;border-radius:2px}
